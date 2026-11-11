@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Penn Club</title>
+
+  <!-- ivypresto-text (Adobe Fonts) -->
+  <link rel="preconnect" href="https://use.typekit.net">
+  <link rel="stylesheet" href="https://use.typekit.net/tvt7neq.css">
+  <link rel="stylesheet" href="https://use.typekit.net/ral4znn.css">
+
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@^6.12.0/dist/maplibre-gl.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="map"></div>
+
+  <!-- Edge case: events with no location appear here, centered on the map -->
+  <div id="center-note" class="center-note" hidden></div>
+
+  <!-- Time slider -->
+  <section id="timeline" class="timeline" aria-label="Timeline">
+    <div class="date-row">
+      <div class="nav-buttons">
+        <button id="prev" class="nav-btn" type="button" aria-label="Previous event">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12H4M10 6l-6 6 6 6"/></svg>
+        </button>
+        <button id="next" class="nav-btn" type="button" aria-label="Next event">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M14 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+      <div id="year" class="year" aria-live="polite"></div>
+    </div>
+    <input id="slider" type="range" step="1" aria-label="Year">
+    <div class="range-labels"><span id="min-label"></span><span id="max-label"></span></div>
+  </section>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+:root {
+  --dp-red: #aa1e22;
+  --dp-white: #ffffff;
+  --serif: 'ivypresto-text', 'Lora', 'Times', serif;   /* years */
+  --georgia: Georgia, 'Times New Roman', serif;          /* addresses + titles */
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+}
+
+#map {
+  position: absolute;
+  inset: 0;
+}
+
+/* ---------- Time slider panel ---------- */
+.timeline {
+  position: absolute;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  width: min(560px, calc(100% - 32px));
+  box-sizing: border-box;
+  padding: 16px 20px 14px;
+  background: var(--dp-white);
+  border-top: 4px solid var(--dp-red);
+  border-radius: 6px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  z-index: 5;
+}
+
+.date-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 10px;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.nav-btn {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1.5px solid var(--dp-red);
+  border-radius: 50%;
+  background: var(--dp-white);
+  color: var(--dp-red);
+  display: grid;
+  place-items: center;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.nav-btn svg { display: block; }
+.nav-btn:hover:not(:disabled) { background: var(--dp-red); color: var(--dp-white); }
+.nav-btn:focus-visible { outline: 2px solid var(--dp-red); outline-offset: 2px; }
+.nav-btn:disabled { opacity: 0.35; cursor: default; }
+
+.year {
+  font-family: var(--serif);
+  font-size: 2.25rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--dp-red);
+  /* trim the font's built-in top/bottom space so the capitals sit on the
+     circles' center line (supported in current Chrome, Edge and Safari) */
+  text-box: trim-both cap alphabetic;
+}
+
+#slider {
+  width: 100%;
+  accent-color: var(--dp-red);
+  cursor: pointer;
+}
+
+.range-labels {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--serif);
+  font-size: 0.8rem;
+  color: #777;
+}
+
+.events {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  max-height: 22vh;
+  overflow-y: auto;
+  font-family: var(--georgia);
+}
+
+.events:empty { display: none; }
+
+.events li {
+  padding: 8px 0;
+  border-top: 1px solid #e6e6e6;
+  cursor: default;
+}
+.events li.has-location { cursor: pointer; }
+.events li.has-location:hover .ev-title { color: var(--dp-red); }
+
+.ev-address {
+  font-family: var(--georgia);
+  font-size: 0.8rem;
+  color: #777;
+}
+.ev-title {
+  font-family: var(--georgia);
+  font-size: 1rem;
+  font-weight: bold;
+  color: #222;
+}
+
+/* ---------- Centered text popup (no-location rows) ---------- */
+.center-note {
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(360px, calc(100% - 48px));
+  box-sizing: border-box;
+  padding: 18px 22px;
+  background: var(--dp-white);
+  border-top: 4px solid var(--dp-red);
+  border-radius: 6px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  font-family: var(--georgia);
+  text-align: center;
+  z-index: 4;
+  pointer-events: none;
+}
+.center-note[hidden] { display: none; }
+.center-note .note + .note { margin-top: 14px; padding-top: 14px; border-top: 1px solid #e6e6e6; }
+.center-note .note-title { font-weight: bold; font-size: 1.1rem; margin-bottom: 4px; }
+.center-note .note-desc { font-size: 0.95rem; line-height: 1.45; color: #333; }
+
+/* ---------- Map marker popups ---------- */
+.maplibregl-popup-content {
+  font-family: var(--georgia);
+  padding: 12px 16px;
+  max-width: 280px;
+}
+.popup-address { font-size: 0.8rem; color: #777; margin-bottom: 2px; }
+.popup-title { font-weight: bold; font-size: 1rem; margin-bottom: 4px; }
+.popup-desc { font-size: 0.9rem; line-height: 1.4; color: #333; }
